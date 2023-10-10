@@ -8,7 +8,6 @@
 <title>サンプルモデルの動作とモデル図の作成</title>
 <link rel="stylesheet" href="css/mystyle.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="css/rouge-github.css">
 </head>
 <body class="article">
 <div id="header">
@@ -41,87 +40,72 @@
 <div class="paragraph">
 <p><code>sample01</code> をビルドして、実行しなさい。</p>
 </div>
-</div>
-<div class="sect3">
-<h4 id="_sample01のソースコードを示しなさい"><a class="anchor" href="#_sample01のソースコードを示しなさい"></a>sample01のソースコードを示しなさい</h4>
-<div class="paragraph">
-<p>下記のテキストのコメント部分を、 <code>sample01/app.c</code> のソースコードで置き換えなさい。</p>
-</div>
-<div id="sample01_app_c" class="exampleblock">
-<div class="title">リスト 1. <code>sample01/app.c</code></div>
+<div id="sample01_app_c" class="listingblock">
+<div class="title"><code>sample01/app.c</code></div>
 <div class="content">
-<div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="c"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno"> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-</pre></td><td class="code"><pre><span class="cp">#include</span> <span class="cpf">"app.h"</span><span class="cp">
-#include</span> <span class="cpf">"util.h"</span><span class="cp">
-</span>
-<span class="kt">void</span> <span class="nf">main_task</span><span class="p">(</span><span class="kt">intptr_t</span> <span class="n">unused</span><span class="p">)</span> <span class="p">{</span> <i class="conum" data-value="1"></i><b>(1)</b>
-  <span class="n">init_f</span><span class="p">(</span><span class="s">"sample01"</span><span class="p">);</span>
-  <span class="n">ev3_motor_config</span><span class="p">(</span><span class="n">EV3_PORT_A</span><span class="p">,</span> <span class="n">LARGE_MOTOR</span><span class="p">);</span> <i class="conum" data-value="2"></i><b>(2)</b>
-  <span class="n">ev3_motor_config</span><span class="p">(</span><span class="n">EV3_PORT_C</span><span class="p">,</span> <span class="n">LARGE_MOTOR</span><span class="p">);</span>
-  <span class="n">ev3_sensor_config</span><span class="p">(</span><span class="n">EV3_PORT_1</span><span class="p">,</span> <span class="n">TOUCH_SENSOR</span><span class="p">);</span>
+<pre class="highlight"><code class="language-c" data-lang="c">#include "app.h"
+#include "util.h"
 
-  <span class="n">ev3_motor_set_power</span><span class="p">(</span><span class="n">EV3_PORT_A</span><span class="p">,</span> <span class="mi">20</span><span class="p">);</span>
-  <span class="n">ev3_motor_set_power</span><span class="p">(</span><span class="n">EV3_PORT_C</span><span class="p">,</span> <span class="mi">20</span><span class="p">);</span>
+void main_task(intptr_t unused) { <i class="conum" data-value="1"></i><b>(1)</b>
+  init_f("sample01");
+  ev3_motor_config(EV3_PORT_A, LARGE_MOTOR); <i class="conum" data-value="2"></i><b>(2)</b>
+  ev3_motor_config(EV3_PORT_C, LARGE_MOTOR);
+  ev3_sensor_config(EV3_PORT_1, TOUCH_SENSOR);
 
-  <span class="k">while</span><span class="p">(</span><span class="o">!</span><span class="n">ev3_touch_sensor_is_pressed</span><span class="p">(</span><span class="n">EV3_PORT_1</span><span class="p">))</span> <span class="p">{</span>
-      <span class="n">tslp_tsk</span><span class="p">(</span><span class="mi">20</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">);</span> <i class="conum" data-value="3"></i><b>(3)</b>
-  <span class="p">}</span>
+  ev3_motor_set_power(EV3_PORT_A, 20); <i class="conum" data-value="3"></i><b>(3)</b>
+  ev3_motor_set_power(EV3_PORT_C, 20);
 
-  <span class="n">ev3_motor_set_power</span><span class="p">(</span><span class="n">EV3_PORT_A</span><span class="p">,</span> <span class="o">-</span><span class="mi">20</span><span class="p">);</span>
-  <span class="n">ev3_motor_set_power</span><span class="p">(</span><span class="n">EV3_PORT_C</span><span class="p">,</span> <span class="o">-</span><span class="mi">20</span><span class="p">);</span>
+  while(!ev3_touch_sensor_is_pressed(EV3_PORT_1)) { <i class="conum" data-value="4"></i><b>(4)</b>
+      tslp_tsk(20 * 1000); <i class="conum" data-value="5"></i><b>(5)</b>
+  }
 
-  <span class="n">tslp_tsk</span><span class="p">(</span><span class="mi">2000</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">);</span>
+  ev3_motor_set_power(EV3_PORT_A, -20); <i class="conum" data-value="6"></i><b>(6)</b>
+  ev3_motor_set_power(EV3_PORT_C, -20);
 
-  <span class="n">ev3_motor_stop</span><span class="p">(</span><span class="n">EV3_PORT_A</span><span class="p">,</span> <span class="nb">false</span><span class="p">);</span>
-  <span class="n">ev3_motor_stop</span><span class="p">(</span><span class="n">EV3_PORT_C</span><span class="p">,</span> <span class="nb">false</span><span class="p">);</span>
+  tslp_tsk(2000 * 1000);
 
-  <span class="n">ext_tsk</span><span class="p">();</span> <i class="conum" data-value="4"></i><b>(4)</b>
-<span class="p">}</span>
-</pre></td></tr></tbody></table></code></pre>
+  ev3_motor_stop(EV3_PORT_A, false); <i class="conum" data-value="7"></i><b>(7)</b>
+  ev3_motor_stop(EV3_PORT_C, false);
+
+  ext_tsk(); <i class="conum" data-value="8"></i><b>(8)</b>
+}</code></pre>
 </div>
 </div>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_編集結果をコミットする"><a class="anchor" href="#_編集結果をコミットする"></a>編集結果をコミットする</h4>
-<div class="paragraph">
-<p>ここまで編集したら、このファイル（ <code>README.adoc</code> ）を保存し、ターミナルからgitコマンドを使ってコミットしなさい。</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="shell">git commit <span class="nt">-m</span> <span class="s2">"sample01のテスト"</span></code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p><code>git log</code> などでコミットできたかどうか確認しなさい。</p>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td><code>main_task</code> は、PCのプログラムの <code>main</code> 関数の代わり（名前は自由、<code>app.cfg</code> でタスク定義のなかで指定した関数名に合わせる）。</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>モーターの初期化。ポートAとCラージモーターを接続し、ポート1にタッチセンサーを接続する。</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>ポートA,Cのモーターをパワー20で正回転させる。</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>ポート1のタッチセンサーが押されたかどうか調べ、押されるまで繰り返す。</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>20*1000マイクロ秒＝20ミリ秒このタスクをスリープする（モーターは回り続ける）</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="6"></i><b>6</b></td>
+<td>ポートA,Cのモーターをパワー20で逆回転させる。</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="7"></i><b>7</b></td>
+<td>ポートA,Cのモーターを停止する。</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="8"></i><b>8</b></td>
+<td>タスクの終了をOSに伝える。</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
@@ -205,7 +189,7 @@
 </div>
 </div>
 <div class="sect3">
-<h4 id="_編集結果をコミットする_2"><a class="anchor" href="#_編集結果をコミットする_2"></a>編集結果をコミットする</h4>
+<h4 id="_編集結果をコミットする"><a class="anchor" href="#_編集結果をコミットする"></a>編集結果をコミットする</h4>
 <div class="paragraph">
 <p>クラス図を保存したら、ターミナルからgitコマンドを使ってコミットしなさい。</p>
 </div>
@@ -217,7 +201,8 @@
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="shell">git status</code></pre>
+<pre class="highlight"><code class="language-shell" data-lang="shell">git status
+// ここに上記コマンドの実行結果（画像ではなくテキスト）を貼り付ける</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -225,11 +210,12 @@
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="shell">git push</code></pre>
+<pre class="highlight"><code class="language-shell" data-lang="shell">git push
+// ここに上記コマンドの実行結果（画像ではなくテキスト）を貼り付ける</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p><code>git log</code> などでコミットできたかどうか確認しなさい。</p>
+<p>また、 <code>git log</code> を実行して過去の処理について確認しなさい。</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -260,37 +246,184 @@
 <div class="paragraph">
 <p><code>sample04</code> をビルドして、実行しなさい。</p>
 </div>
-</div>
-<div class="sect3">
-<h4 id="_sample04のソースコードを示しなさい"><a class="anchor" href="#_sample04のソースコードを示しなさい"></a>sample04のソースコードを示しなさい</h4>
-<div class="paragraph">
-<p>下記のテキストのコメント部分を、 <code>sample04/app.c</code> のソースコードで置き換えなさい。</p>
-</div>
-<div id="sample04_app_c" class="exampleblock">
-<div class="title">リスト 2. <code>sample04/app.c</code></div>
+<div class="videoblock">
+<div class="title">参考動画（sample04に例外処理を追加したもの）</div>
 <div class="content">
-<div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="c"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno">1
-</pre></td><td class="code"><pre><span class="c1">// ここにsample04/app.cのソースコードを貼り付けなさい。</span>
-</pre></td></tr></tbody></table></code></pre>
-</div>
-</div>
+<iframe src="https://www.youtube.com/embed/-vaPDf_4p_k?rel=0" frameborder="0" allowfullscreen></iframe>
 </div>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_編集結果をコミットする_3"><a class="anchor" href="#_編集結果をコミットする_3"></a>編集結果をコミットする</h4>
-<div class="paragraph">
-<p>ここまで編集したら、このファイル（ <code>README.adoc</code> ）を保存し、ターミナルからgitコマンドを使ってコミットしなさい。</p>
-</div>
-<div class="listingblock">
+<h4 id="_sample04のソースコードをテキストエディタで参照しなさい"><a class="anchor" href="#_sample04のソースコードをテキストエディタで参照しなさい"></a>sample04のソースコードをテキストエディタで参照しなさい</h4>
+<div id="sample04_app_c_1" class="listingblock">
+<div class="title"><code>sample04/app.c</code>(1)（冒頭部分を抜粋）</div>
 <div class="content">
-<pre class="rouge highlight"><code data-lang="shell">git commit <span class="nt">-m</span> <span class="s2">"sample04のテスト"</span></code></pre>
+<pre class="highlight"><code class="language-ruby" data-lang="ruby">#include "app.h"
+#include "util.h"
+
+const int bumper_sensor = EV3_PORT_1;
+const int linemon_sensor = EV3_PORT_3;
+const int left_motor = EV3_PORT_A;
+const int right_motor = EV3_PORT_C;
+
+const int carrier_sensor = EV3_PORT_2; <i class="conum" data-value="1"></i><b>(1)</b>
+
+int carrier_cargo_is_loaded(void) { <i class="conum" data-value="2"></i><b>(2)</b>
+  return ev3_touch_sensor_is_pressed(carrier_sensor);
+}
+
+const int walldetector_sensor = EV3_PORT_4; <i class="conum" data-value="3"></i><b>(3)</b>
+#define WD_DISTANCE 10 <i class="conum" data-value="4"></i><b>(4)</b>
+int wd_distance = WD_DISTANCE; <i class="conum" data-value="5"></i><b>(5)</b>
+
+int wall_detector_is_detected(void) { <i class="conum" data-value="6"></i><b>(6)</b>
+  return ev3_ultrasonic_sensor_get_distance(walldetector_sensor)
+    &lt; wd_distance;
+}
+
+int bumper_is_pushed(void) {
+  return ev3_touch_sensor_is_pressed(bumper_sensor);
+}</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p><code>git log</code> などでコミットできたかどうか確認しなさい。</p>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>ポート2のタッチセンサーに <code>carrier_sensor</code> という名前をつけた。</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>荷台（ <code>carrier</code> ）クラスに、荷物が載ったかどうか調べる操作 <code>cargo_is_loaded</code> を追加し、それをCの関数 <code>carrier_cargo_is_loaded</code> として実装した。</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>ポート4の超音波センサーに <code>walldetector_sensor</code> という名前をつけた。</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>側壁との距離のしきい値（Threshold）の定数にマクロで名前をつけた。</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>側壁との距離の現在のしきい値ほ保持する変数 <code>wd_distance</code> を定義した。</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="6"></i><b>6</b></td>
+<td>側壁監視部（ <code>wall_detector</code> ）クラスに、側壁が見つかったどうか調べる操作 <code>is_detected</code> を追加し、それをCの関数 <code>wall_detector_is_detected</code> として実装した。</td>
+</tr>
+</table>
+</div>
+<div id="sample04_app_c_2" class="listingblock">
+<div class="title"><code>sample04/app.c</code> (2)（ <code>porter_transport</code> 部分を抜粋）</div>
+<div class="content">
+<pre class="highlight"><code class="language-ruby" data-lang="ruby">typedef enum { <i class="conum" data-value="1"></i><b>(1)</b>
+  P_WAIT_FOR_LOADING, P_TRANSPORTING,
+  P_WAIT_FOR_UNLOADING, P_RETURNING, P_ARRIVED
+} porter_state; <i class="conum" data-value="2"></i><b>(2)</b>
+
+porter_state p_state = P_WAIT_FOR_LOADING; <i class="conum" data-value="3"></i><b>(3)</b>
+
+int p_entry = true; <i class="conum" data-value="4"></i><b>(4)</b>
+
+void porter_transport(void) {
+  num_f(p_state, 2); <i class="conum" data-value="1"></i><b>(1)</b>
+  switch(p_state) {
+  case P_WAIT_FOR_LOADING: <i class="conum" data-value="2"></i><b>(2)</b>
+    if( p_entry ) { <i class="conum" data-value="3"></i><b>(3)</b>
+      p_entry = false;
+    }
+    <i class="conum" data-value="4"></i><b>(4)</b>
+    if( carrier_cargo_is_loaded() ) { <i class="conum" data-value="5"></i><b>(5)</b>
+      p_state = P_TRANSPORTING; <i class="conum" data-value="6"></i><b>(6)</b>
+      p_entry = true; <i class="conum" data-value="7"></i><b>(7)</b>
+    }
+    if( p_entry ) { <i class="conum" data-value="8"></i><b>(8)</b>
+      // exit
+    }
+    break;
+  case P_TRANSPORTING:
+    if( p_entry ) {
+      p_entry = false;
+    }
+    tracer_run();
+    if( wall_detector_is_detected() ) {
+      p_state = P_WAIT_FOR_UNLOADING;
+      p_entry = true;
+    }
+    if( p_entry ) {
+      tracer_stop();
+    }
+    break;
+  case P_WAIT_FOR_UNLOADING:
+    if( p_entry ) {
+      p_entry = false;
+    }
+    if(! carrier_cargo_is_loaded() ) {
+      p_state = P_RETURNING;
+      p_entry = true;
+    }
+    // do
+    if( p_entry ) {
+      // exit
+    }
+    break;
+  case P_RETURNING:
+    if( p_entry ) {
+      p_entry = false;
+    }
+    tracer_run();
+    if( bumper_is_pushed() ) {
+      p_state = P_ARRIVED;
+      p_entry = true;
+    }
+    if( p_entry ) {
+      tracer_stop();
+    }
+    break;
+  case P_ARRIVED:
+    break;
+  default:
+    break;
+  }
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>状態を表す定数を <code>enum</code> で定義した。</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>定義した定数を <code>porter_state</code> 型として <code>typedef</code> した。</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td><code>porter_state</code> 型で現在の <code>porter</code> の状態を保持する変数 <code>p_state</code> を定義した。</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td><code>porter</code> の各状態の <code>entry</code> の処理（その状態に入った1回目だけやる処理）の判定用の変数 <code>p_entry</code> を定義した。</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>荷物が載ったかどうか（ <code>carrier_cargo_is_loaded()</code> が真か）を調べる。</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="6"></i><b>6</b></td>
+<td>現在の状態を次の状態に変更する（繰り返しの次の <code>switch</code> 文に入る際にその <code>case</code> に移る）。</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="7"></i><b>7</b></td>
+<td>現在の状態から抜けるときは、<code>entry</code> 処理を実行するよう設定する。</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="8"></i><b>8</b></td>
+<td><code>porter</code> の各状態の `exit`の処理（現在の状態から抜けるときに実行する処理）があれば、ここに書く。</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
@@ -372,9 +505,25 @@
 </div>
 </div>
 <div class="sect3">
-<h4 id="_編集結果をコミットする_4"><a class="anchor" href="#_編集結果をコミットする_4"></a>編集結果をコミットする</h4>
+<h4 id="_編集結果をコミットする_2"><a class="anchor" href="#_編集結果をコミットする_2"></a>編集結果をコミットする</h4>
 <div class="paragraph">
 <p>ここまで編集したら、このファイル（ <code>README.adoc</code> ）を保存し、ターミナルからgitコマンドを使ってコミットしなさい。</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_残りのクラスも追加してクラス図を更新しなさい"><a class="anchor" href="#_残りのクラスも追加してクラス図を更新しなさい"></a>残りのクラスも追加してクラス図を更新しなさい</h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>sample04</code> に登場する他のクラスと操作についても、クラス図に追加しなさい。</p>
+</li>
+<li>
+<p>ひとつのクラスについて、クラス図にクラスと操作を追加した都度、モデル図ファイルを保存し、コミットしなさい。</p>
+</li>
+<li>
+<p>すべてのクラスを追加して、コミットできたら、リポジトリをプッシュしなさい。</p>
+</li>
+</ol>
 </div>
 </div>
 </div>
@@ -537,7 +686,7 @@
 </div>
 </div>
 <div class="sect3">
-<h4 id="_編集結果をコミットする_5"><a class="anchor" href="#_編集結果をコミットする_5"></a>編集結果をコミットする</h4>
+<h4 id="_編集結果をコミットする_3"><a class="anchor" href="#_編集結果をコミットする_3"></a>編集結果をコミットする</h4>
 <div class="paragraph">
 <p>ステートマシン図を保存したら、ターミナルからgitコマンドを使ってコミットしなさい。</p>
 </div>
@@ -642,7 +791,7 @@
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2023-10-10 03:44:57 +0900
+Last updated 2023-10-10 13:22:41 +0900
 </div>
 </div>
 </body>
