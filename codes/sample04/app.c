@@ -12,11 +12,11 @@ int carrier_cargo_is_loaded(void) { // <2>
   return ev3_touch_sensor_is_pressed(carrier_sensor);
 }
 
-const int walldetector_sensor = EV3_PORT_4; // <1>
-#define WD_DISTANCE 10 // <2>
-int wd_distance = WD_DISTANCE; // <3>
+const int walldetector_sensor = EV3_PORT_4; // <3>
+#define WD_DISTANCE 10 // <4>
+int wd_distance = WD_DISTANCE; // <5>
 
-int wall_detector_is_detected(void) { // <4>
+int wall_detector_is_detected(void) { // <6>
   return ev3_ultrasonic_sensor_get_distance(walldetector_sensor)
     < wd_distance;
 }
