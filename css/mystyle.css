@@ -174,7 +174,7 @@ object, svg { display: inline-block; vertical-align: middle; }
 
 p.lead, .paragraph.lead > p, #preamble > .sectionbody > .paragraph:first-of-type p { font-size: 1.21875em; line-height: 1.6; }
 
-.subheader, .admonitionblock td.content > .title, .audioblock > .title, .exampleblock > .title, .imageblock > .title, .listingblock > .title, .literalblock > .title, .stemblock > .title, .openblock > .title, .paragraph > .title, .quoteblock > .title, table.tableblock > .title, .verseblock > .title, .videoblock > .title, .dlist > .title, .olist > .title, .ulist > .title, .qlist > .title, .hdlist > .title { line-height: 1.25; color: #002c5e; font-weight: 400; padding: 0.3em; }
+.subheader, .admonitionblock td.content > .title, .audioblock > .title, .exampleblock > .title, .imageblock > .title, .listingblock > .title, .literalblock > .title, .stemblock > .title, .openblock > .title, .paragraph > .title, .quoteblock > .title, table.tableblock > .title, .verseblock > .title, .videoblock > .title, .dlist > .title, .olist > .title, .ulist > .title, .qlist > .title, .hdlist > .title { line-height: 1.25; color: #002c5e; font-weight: 300; margin-top: 0.2em; margin-bottom: 0.5em; }
 
 /* Typography resets */
 div, dl, dt, dd, ul, ol, li, h1, h2, h3, #toctitle, .sidebarblock > .content > .title, h4, h5, h6, pre, form, p, blockquote, th, td { margin: 0; padding: 0; direction: ltr; }
@@ -214,7 +214,7 @@ strong, b { font-weight: bold; line-height: inherit; }
 small { font-size: 60%; line-height: inherit; }
 
 /* code { font-family: "Ubuntu Mono", "Inconsolata", monospace; font-weight: 400; color: #331d00; } */
-code { font-family: "RictyDiminished", "Ubuntu Mono", "Inconsolata", monospace; font-weight: 400; color: #331d00; }
+code { font-family: "RictyDiminished", "Ubuntu Mono", "Inconsolata", monospace; font-weight: 400; color: #703f1c; aqua-background }
 
 /* Lists */
 ul, ol, dl { font-size: 1em; line-height: 1.5; margin-bottom: 1.25em; list-style-position: outside; font-family: inherit; }
@@ -379,7 +379,7 @@ table.tableblock > caption.title { white-space: nowrap; overflow: visible; max-w
 table.tableblock #preamble > .sectionbody > .paragraph:first-of-type p { font-size: inherit; }
 
 .admonitionblock > table { border-collapse: separate; border: 0; background: none; width: 100%; }
-.admonitionblock > table td.icon { text-align: center; width: 80px; }
+.admonitionblock > table td.icon { text-align: center; valign: middle; width: 80px; }
 .admonitionblock > table td.icon img { max-width: none; }
 .admonitionblock > table td.icon .title { font-weight: bold; font-family: "Varela Round", sans-serif; text-transform: uppercase; }
 .admonitionblock > table td.content { padding-left: 1.125em; padding-right: 1.25em; border-left: 1px solid rgba(145, 135, 84, 0.15); color: #666; }
@@ -399,7 +399,7 @@ table.tableblock #preamble > .sectionbody > .paragraph:first-of-type p { font-si
 .literalblock pre, .listingblock pre:not(.highlight), .listingblock pre[class="highlight"], .listingblock pre[class^="highlight "], .listingblock pre.CodeRay, .listingblock pre.prettyprint { background: rgba(16, 195, 196, 0.05); }
 .sidebarblock .literalblock pre, .sidebarblock .listingblock pre:not(.highlight), .sidebarblock .listingblock pre[class="highlight"], .sidebarblock .listingblock pre[class^="highlight "], .sidebarblock .listingblock pre.CodeRay, .sidebarblock .listingblock pre.prettyprint { background: #f2f1f1; }
 
-.literalblock pre, .literalblock pre[class], .listingblock pre, .listingblock pre[class] { border: 1px solid rgba(16, 195, 196, 0.125); -webkit-border-radius: 6px; border-radius: 6px; word-wrap: break-word; padding: 1em; font-size: 0.8125em; }
+.literalblock pre, .literalblock pre[class], .listingblock pre, .listingblock pre[class] { border: 1px solid rgba(16, 195, 196, 0.125); -webkit-border-radius: 6px; border-radius: 6px; word-wrap: break-word; padding: 0.5em; font-size: 0.8125em; }
 .literalblock pre.nowrap, .literalblock pre[class].nowrap, .listingblock pre.nowrap, .listingblock pre[class].nowrap { overflow-x: auto; white-space: pre; word-wrap: normal; }
 @media only screen and (min-width: 768px) { .literalblock pre, .literalblock pre[class], .listingblock pre, .listingblock pre[class] { font-size: 0.90625em; } }
 @media only screen and (min-width: 1280px) { .literalblock pre, .literalblock pre[class], .listingblock pre, .listingblock pre[class] { font-size: 1em; } }
@@ -687,7 +687,7 @@ b.conum * { color: inherit !important; }
 #content h2, #content h3, #content #toctitle, #content .sidebarblock > .content > .title, #content h4, #content h5, #content #toctitle { position: relative; left: -0.0625em; }
 #content h2 { font-weight: bold; }
 
-.paragraph.lead > p, #preamble > .sectionbody > .paragraph:first-of-type p { color: black; }
+.paragraph.lead > p, #preamble > .sectionbody > .paragraph:first-of-type p { color: #556b2f; }
 
 pre.pygments.highlight { background-color: rgba(16, 195, 196, 0.05); }
 
@@ -701,38 +701,131 @@ li.L5, li.L6, li.L7, li.L8
 
 h1 { font-weight: bold; }
 
-.exampleblock > .title {
-  font-weight: 400;
-  background-color: #f2f2f4;
-  display: inline-block;
-  padding: 0.3em;
-  margin-bottom: 0
+.raztalk dt {display: block; width: 30px; float:left; clear:both;}
+.raztalk dd {display: block; padding-left: 1.5em;}
+
+@font-face {
+  font-family: 'hanazomefont';
+  src: url('../fonts/Hanazome.ttf') format('truetype');
 }
 
-.exampleblock > .content {
-  padding: 0;
-  border:0
+.raztalk dd p {font-family: 'hanazomefont';}
+
+.listingblock img {
+  width: 1em;
+  filter: opacity(0.4) drop-shadow(0 0 0 green);
 }
 
-.exampleblock > .content > .ulist {
-  padding: 0.3em;
-  border:1
+.colist img {
+  width: 1em;
+  filter: opacity(0.4) drop-shadow(0 0 0 green);
 }
 
-/* 
-.imageblock > .title {
-  font-weight: 400;
-  background-color: #f2f2f4;
-  display: inline-block;
-  padding: 0.3em;
-  }
+/* p { font-family: inherit; font-weight: normal; font-size: 1em; line-height: 1.5; margin-left: 4em; margin-bottom: 1.25em; text-rendering: optimizeLegibility; } */
 
-*/
-/*  
-.tableblock > .title
-  font-weight: 400;
-  background-color: #f2f2f4;
-  display: inline-block;
-  padding: 0.3em;
+p { margin-left: 4em; }
+
+.imageblock, .listingblock, .colist { margin-left: 4em; }
+
+dl dt { margin-left: 4em; }
+
+dl dd { margin-left: 6em; }
+
+dl dd p { margin-left: 0em; }
+
+ul { margin-left: 5em; }
+
+ul p { margin-left: 0em; }
+
+ul.checklist { margin-left: 4em; }
+
+ul.checklist p { margin-left: em; }
+
+ol { margin-left: 5em; }
+
+ol p { margin-left: 0em; }
+
+.admonitionblock { margin-left: 4em; }
+
+.admonitionblock p { margin-left: 0em; }
+
+.sidebarblock { margin-left: 4em; }
+
+.sidebarblock p { margin-left: 0em; }
+
+.sidebarblock ul { margin-left: 2em; }
+
+.sidebarblock ol { margin-left: 2em; }
+
+.sidebarblock dl dt { margin-left: 0em; }
+
+.sidebarblock dl dd { margin-left: 2em; }
+
+.sidebarblock .listingblock { margin-left: 0em; }
+
+.sidebarblock .colist { margin-left: 0em; }
+
+.sidebarblock .imageblock { margin-left: 0em; }
+
+.admonitionblock { margin-left: 4em; }
+
+.admonitionblock p { margin-left: 0em; }
+
+.admonitionblock ul { margin-left: 2em; }
+
+.admonitionblock ol { margin-left: 2em; }
+
+.admonitionblock dl dt { margin-left: 0em; }
+
+.admonitionblock dl dd { margin-left: 2em; }
+
+.admonitionblock .listingblock { margin-left: 0em; }
+
+.admonitionblock .colist { margin-left: 0em; }
+
+.admonitionblock .imageblock { margin-left: 0em; }
+
+.exampleblock { margin-left: 4em; }
+
+.exampleblock p { margin-left: 0em; }
+
+.exampleblock ul { margin-left: 2em; }
+
+.exampleblock ol { margin-left: 2em; }
+
+.exampleblock dl dt { margin-left: 0em; }
+
+.exampleblock dl dd { margin-left: 2em; }
+
+.exampleblock .listingblock { margin-left: 0em; }
+
+.exampleblock .colist { margin-left: 0em; }
+
+.exampleblock .imageblock { margin-left: 0em; }
+
+.tableblock { margin-left: 4em; }
+
+.tableblock p { margin-left: 0em; }
+
+.tableblock ul { margin-left: 2em; }
+
+.tableblock ol { margin-left: 2em; }
+
+.tableblock dl dt { margin-left: 0em; }
+
+.tableblock dl dd { margin-left: 2em; }
+
+.tableblock .imageblock { margin-left: 0em; }
+
+.colophon p { margin-left: 0em; }
+
+/* pre, pre > code  { font-family: "RictyDiminished", "Ubuntu Mono", "Inconsolata", monospace; font-weight: 400; color: #703f1c; aqua-background; font-size: 1em; }
+   pre.rouge.highligh { padding: 0em; } */
+
+ol.linenums {
+  margin-left: 1.2rem;
 }
-*/
+
+div.content > pre > ol > li {
+  padding-left: 1em;
+}

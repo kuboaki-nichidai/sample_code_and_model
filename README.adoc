@@ -1,6 +1,15 @@
-:Linkcss:
+:encoding: utf-8
+:lang: ja
+:scripts: cjk
+:media: prepress
+:linkcss:
 :stylesdir: css
 :stylesheet: mystyle.css
+:sectanchors:
+:autofit-option:
+:experimental:
+:support-uri:
+:original-support-uri:
 :twoinches: width='360'
 :full-width: width='100%'
 :three-quarters-width: width='75%'
@@ -22,6 +31,7 @@
 :section-refsig:
 :chapter-refsig:
 
+
 = サンプルモデルの動作とモデル図の作成
 
 NOTE: この演習は、グループで相談しつつ、各自が実施します。
@@ -35,30 +45,12 @@ NOTE: この演習は、グループで相談しつつ、各自が実施しま�
 
 `sample01` をビルドして、実行しなさい。
 
-==== sample01のソースコードを示しなさい
-
-下記のテキストのコメント部分を、 `sample01/app.c` のソースコードで置き換えなさい。
-
 [[sample01_app_c]]
 .`sample01/app.c`
-[example]
---
 [source,c,linenums]
 ----
-// ここにsample01/app.cのソースコードを貼り付けなさい。
+include::{sourcesdir}/sample01/app.c[]
 ----
---
-
-==== 編集結果をコミットする
-
-ここまで編集したら、このファイル（ `README.adoc` ）を保存し、ターミナルからgitコマンドを使ってコミットしなさい。
-
-[source,shell]
-----
-git commit -m "sample01のテスト"
-----
-
-`git log` などでコミットできたかどうか確認しなさい。
 
 
 === 【演習】astah*でsample01のクラス図を作る
