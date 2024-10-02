@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Asciidoctor 2.0.20">
+<meta name="generator" content="Asciidoctor 2.0.23">
 <title>サンプルモデルの動作とモデル図の作成</title>
 <link rel="stylesheet" href="css/mystyle.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -27,6 +27,105 @@
 </td>
 </tr>
 </table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_演習場所を調整する"><a class="anchor" href="#_演習場所を調整する"></a>演習場所を調整する</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_ev3rtのワークスペースにcloneする"><a class="anchor" href="#_ev3rtのワークスペースにcloneする"></a>EV3RTのワークスペースにcloneする</h3>
+<div class="paragraph">
+<p>このAssignmentでは演習でEV3RTのプログラムをビルド（make）します。
+そのため、サンプルコードをEV3RTの開発環境に配置しておかないと不自由です。
+そうなるように、cloneする場所を EV3RT のワークスペースとなる場所に調整します（そうでない場所にcloneしてしまった場合は、調整場所に移動しましょう）。</p>
+</div>
+<div class="paragraph">
+<p>具体的には、 <code>sdk/workspace</code> の「並び」に配置します。
+<a href="#assignment_location01"><code>sample_code_and_model/</code> をワークスペースの位置に配置する</a> のように、ターミナルでcloneするときに、 <code>sdk</code> ディレクトリでcloneを実行します。</p>
+</div>
+<div id="assignment_location01" class="listingblock">
+<div class="title"><code>sample_code_and_model/</code> をワークスペースの位置に配置する</div>
+<div class="content">
+<pre class="highlight"><code class="language-shell" data-lang="shell">$ cd {EV3RTの置き場所}/hrp3/sdk <i class="conum" data-value="1"></i><b>(1)</b>
+$ git clone {受理したAssigmentのURL} <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>EV3RTの <code>sdk</code> ディレクトに移動した。演習の指示通りなら <code>/c/ev3rt</code> だろう。</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>例えばアカウント名が <code>abcd</code> なら、 <code><a href="https://github.com/cit-prjex/sample-code-and-model-abcd.git" class="bare">https://github.com/cit-prjex/sample-code-and-model-abcd.git</a></code> のようになるだろう。</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p><code>workspace</code> と同じ階層（ <code>sdk</code> の下）に配置されたことを確認します。
+例えば、 cloneしたリポジトリが <code>sample-code-and-model-abcd</code> ならば、 <a href="#assignment_location02">cloneしたリポジトリの配置を確認する</a> のよな配置になります。</p>
+</div>
+<div id="assignment_location02" class="listingblock">
+<div class="title">cloneしたリポジトリの配置を確認する</div>
+<div class="content">
+<pre class="highlight"><code class="language-shell" data-lang="shell">$ pwd <i class="conum" data-value="1"></i><b>(1)</b>
+{EV3RTの置き場所}/hrp3/sdk
+$ tree -L1
+{EV3RTの置き場所}/hrp3/sdk
+├── （その他のいろいろ）
+├── sample-code-and-model-abcd <i class="conum" data-value="2"></i><b>(2)</b>
+└── workspace</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>カレントディレクトリ（現在のディレクトリ）を <code>sdk</code> に移動したことを確認。</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>cloneしたリポジトリ（のディレクトリ）があることを確認する。</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_makefileをworkspaceからコピーする"><a class="anchor" href="#_makefileをworkspaceからコピーする"></a>Makefileをworkspaceからコピーする</h3>
+<div class="paragraph">
+<p><code>workspace</code> の中にあるMakefileがないと、EV3RTのワークスペースとして機能しません。
+そこで、<code>workspace</code> の中の <code>Makefile</code> をcloneしたリポジトリにコピーします。
+ターミナルから実行してもよいですし、Windows のExploreを使ってコピーしてもかまいません。</p>
+</div>
+<div class="listingblock">
+<div class="title"><code>Makefile</code> をコピーできたか確認する</div>
+<div class="content">
+<pre class="highlight"><code class="language-shell" data-lang="shell">$ pwd
+{EV3RTの置き場所}/hrp3/sdk/クローンしたディレクトリ <i class="conum" data-value="1"></i><b>(1)</b>
+$ ls -1 <i class="conum" data-value="2"></i><b>(2)</b>
+README.adoc
+いろいろ）
+Makefile <i class="conum" data-value="3"></i><b>(3)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>カレントディレクトリ（現在のディレクトリ）が、cloneしたディレクトリに移動してあることを確認。</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td><code>ls</code> コマンドを <code>-1</code> （エルではなく <code>1</code> ）で実行した。</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Makefileがコピーできていいることを確認した。</td>
+</tr>
+</table>
+</div>
 </div>
 </div>
 </div>
@@ -165,6 +264,46 @@ void main_task(intptr_t unused) { <i class="conum" data-value="1"></i><b>(1)</b>
 <div class="paragraph">
 <p>指示に従って、 <code>sample01/app.c</code> のコードを参照して、クラス図を作成しなさい。</p>
 </div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>「モノ」を抜書きしてクラスとして配置する。</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>motor</code> 、 <code>touch_sensor</code> など</p>
+</li>
+<li>
+<p><code>main_task</code> は関数なので働きとしたいが、この演習では特別なモノとして扱う。</p>
+</li>
+<li>
+<p>「OS」をクラスとして追加する。</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>「働き」を抜書きして、その働きの主体となるクラスの操作に追加する。</p>
+<div class="ulist">
+<ul>
+<li>
+<p>たとえば、<code>ev3_set_motor_power</code> なら、<code>set_power</code> 。 ここで  <code>ev3</code> はライブラリ名なので割愛し、 <code>motor</code> はモノに挙げたので割愛して、残りの <code>set_power</code> を働きとして抜き書きして操作に追加する。</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>働きを使っている側から働きを提供している側へ矢印つきの関連を引く。</p>
+<div class="ulist">
+<ul>
+<li>
+<p>関数の中で呼び出している関数があれば、呼び出している側の関数を働きとして持つクラスが矢印の元、中で呼び出されている側の関数の働きを操作として持つクラスが矢印の先。</p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
 </div>
 <div class="sect3">
 <h4 id="_sample01のクラス図を保存しなさい"><a class="anchor" href="#_sample01のクラス図を保存しなさい"></a>sample01のクラス図を保存しなさい</h4>
@@ -245,6 +384,26 @@ void main_task(intptr_t unused) { <i class="conum" data-value="1"></i><b>(1)</b>
 <h4 id="_sample04をビルドして実行しなさい"><a class="anchor" href="#_sample04をビルドして実行しなさい"></a>sample04をビルドして実行しなさい</h4>
 <div class="paragraph">
 <p><code>sample04</code> をビルドして、実行しなさい。</p>
+</div>
+<div class="olist arabic">
+<div class="title">自動搬送ロボットが荷物を運搬する</div>
+<ol class="arabic">
+<li>
+<p>自動搬送ロボットは、プログラムを起動すると荷物が載せられるのを待つ。</p>
+</li>
+<li>
+<p>荷台が荷物が載せられたと認識すると、自動搬送ロボットは経路に沿って荷物を運搬する。</p>
+</li>
+<li>
+<p>側壁監視部が壁を認識すると、自動搬送ロボットは配達先に着いたとみなして停止する。</p>
+</li>
+<li>
+<p>荷台が荷物が降ろされたことを認識すると、自動搬送ロボットは経路に沿って車庫へ回送する。</p>
+</li>
+<li>
+<p>バンパーが押されると、自動搬送ロボットは、車庫についたとみなして停止する。</p>
+</li>
+</ol>
 </div>
 <div class="videoblock">
 <div class="title">参考動画（sample04に例外処理を追加したもの）</div>
@@ -428,7 +587,75 @@ void porter_transport(void) {
 </div>
 </div>
 <div class="sect2">
+<h3 id="_クラス図とコードの対応関係"><a class="anchor" href="#_クラス図とコードの対応関係"></a>クラス図とコードの対応関係</h3>
+<div class="paragraph">
+<p>このコードは、 <a href="#traslation_rule_guide">図 3</a> のようなクラス図とコードの対応関係で作成されている。
+この対応関係を参考にしてクラス図とステートマシン図を作成する演習を実施しなさい。</p>
+</div>
+<div id="traslation_rule_guide" class="imageblock">
+<div class="content">
+<img src="images/traslation_rule_guide.png" alt="traslation rule guide" width="100%">
+</div>
+<div class="title">図 3. クラス図とコードの対応づけ</div>
+</div>
+</div>
+<div class="sect2">
 <h3 id="_演習astahでsample04のクラス図を作る"><a class="anchor" href="#_演習astahでsample04のクラス図を作る"></a>【演習】astah*でsample04のクラス図を作る</h3>
+<div class="sect3">
+<h4 id="_samlple04のクラス図の情報を抽出する"><a class="anchor" href="#_samlple04のクラス図の情報を抽出する"></a>samlple04のクラス図の情報を抽出する</h4>
+<div class="paragraph">
+<p>クラスの候補（モノ）を下記に列挙しなさい（クラスの候補になるものでよい）</p>
+</div>
+<div class="ulist">
+<div class="title">クラスの候補（下記リストを書き換える）</div>
+<ul>
+<li>
+<p>main_task</p>
+</li>
+<li>
+<p>motor</p>
+</li>
+<li>
+<p>クラス候補のモノA</p>
+</li>
+<li>
+<p>クラス候補のモノB</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>操作の候補（働き）の候補を列挙しなさい（候補でよい）。
+もし、クラスが決定できるなら、後のかっこ内に記載しておきなさい。</p>
+</div>
+<div class="olist arabic">
+<div class="title">操作の候補（下記リストを書き換える）</div>
+<ol class="arabic">
+<li>
+<p>set_poweer（motor）</p>
+</li>
+<li>
+<p>操作候補の働き1（クラス候補A）</p>
+</li>
+<li>
+<p>操作候補の働き2（クラス候補B）</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>関連の候補（クラス間のつながり）を下記に列挙しなさい（候補でよい）</p>
+</div>
+<div class="olist arabic">
+<div class="title">関連の候補（下記リストを書き換える）</div>
+<ol class="arabic">
+<li>
+<p>main_task &#8594; transporter</p>
+</li>
+<li>
+<p>クラス候補 &#8594; クラス候補</p>
+</li>
+</ol>
+</div>
+</div>
 <div class="sect3">
 <h4 id="_sample04のプロジェクトを作成する"><a class="anchor" href="#_sample04のプロジェクトを作成する"></a>sample04のプロジェクトを作成する</h4>
 <div class="olist arabic">
@@ -497,11 +724,14 @@ void porter_transport(void) {
 </li>
 </ol>
 </div>
-<div class="imageblock">
+<div class="paragraph">
+<p><a href="#sample04_class_01">図 4</a> が作成したクラス図で置き換えられたことを確認しなさい。</p>
+</div>
+<div id="sample04_class_01" class="imageblock">
 <div class="content">
 <img src="images/sample04_class_01.png" alt="sample04 class 01" width="100%">
 </div>
-<div class="title">図 3. <code>sample04</code> のクラス図（保存できたら置き換わる）</div>
+<div class="title">図 4. <code>sample04</code> のクラス図（その1）（保存できたら置き換わる）</div>
 </div>
 </div>
 <div class="sect3">
@@ -520,10 +750,28 @@ void porter_transport(void) {
 <li>
 <p>ひとつのクラスについて、クラス図にクラスと操作を追加した都度、モデル図ファイルを保存し、コミットしなさい。</p>
 </li>
-<li>
-<p>すべてのクラスを追加して、コミットできたら、リポジトリをプッシュしなさい。</p>
-</li>
 </ol>
+</div>
+<div class="paragraph">
+<p>クラス図を更新したら、クラス図の画像を <code>sample04_class_02.png</code> として書き出しなさい。</p>
+</div>
+<div class="paragraph">
+<p><a href="#sample04_class_02">図 5</a> が書き出した画像で置き換えられていることを確認しなさい。</p>
+</div>
+<div id="sample04_class_02" class="imageblock">
+<div class="content">
+<img src="images/sample04_class_02.png" alt="sample04 class 02" width="100%">
+</div>
+<div class="title">図 5. <code>sample04</code> のクラス図（その2）（保存できたら置き換わる）</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_編集結果をプッシュする_2"><a class="anchor" href="#_編集結果をプッシュする_2"></a>編集結果をプッシュする</h4>
+<div class="paragraph">
+<p>作成したastahのプロジェクトファイル（ <code>.asta</code> ）、astahから出力した画像ファイル、このファイル（ <code>README.adoc</code> ）を保存し、ターミナルからgitコマンドを使ってコミットしなさい。</p>
+</div>
+<div class="paragraph">
+<p>コミットできたら、リポジトリをプッシュしなさい。</p>
 </div>
 </div>
 </div>
@@ -613,13 +861,13 @@ void porter_transport(void) {
 <div class="content">
 <img src="images/GSW-20191021-102644.png" alt="add_stm_diagram" width="50%" height="]">
 </div>
-<div class="title">図 4. <code>porter</code> クラスにステートマシン図を追加する</div>
+<div class="title">図 6. <code>porter</code> クラスにステートマシン図を追加する</div>
 </div>
 <div id="add_stm_name" class="imageblock">
 <div class="content">
 <img src="images/GSW-20191021-102135.png" alt="add_stm_name" width="50%" height="]">
 </div>
-<div class="title">図 5. ステートマシン図に名前をつける</div>
+<div class="title">図 7. ステートマシン図に名前をつける</div>
 </div>
 </div>
 <div class="sect3">
@@ -664,7 +912,7 @@ void porter_transport(void) {
 <div class="content">
 <img src="images/GSW-20191021-142110.png" alt="GSW 20191021 142110" width="75%">
 </div>
-<div class="title">図 6. 作成中のステートマシン図</div>
+<div class="title">図 8. 作成中のステートマシン図</div>
 </div>
 </div>
 <div class="sect3">
@@ -682,7 +930,7 @@ void porter_transport(void) {
 <div class="content">
 <img src="images/sample04_stms_01.png" alt="sample04 stms 01" width="100%">
 </div>
-<div class="title">図 7. <code>sample04</code> のステートマシン図（保存できたら置き換わる）</div>
+<div class="title">図 9. <code>sample04</code> のステートマシン図（保存できたら置き換わる）</div>
 </div>
 </div>
 <div class="sect3">
@@ -692,7 +940,7 @@ void porter_transport(void) {
 </div>
 </div>
 <div class="sect3">
-<h4 id="_編集結果をプッシュする_2"><a class="anchor" href="#_編集結果をプッシュする_2"></a>編集結果をプッシュする</h4>
+<h4 id="_編集結果をプッシュする_3"><a class="anchor" href="#_編集結果をプッシュする_3"></a>編集結果をプッシュする</h4>
 <div class="paragraph">
 <p>ステートマシン図を保存したら、ターミナルからgitコマンドを使って、プッシュしなさい。</p>
 </div>
@@ -705,21 +953,21 @@ void porter_transport(void) {
 <code>sample01</code> では、センサーやモーターを直接利用したが、ロボットのユニットやアプリケーションの処理が見えるかたちに変わった。</p>
 </div>
 <div class="paragraph">
-<p>この検討の結果から、 <a href="#layered_arch_01">図 8</a> のような階層化アーキテクチャが見いだせる。</p>
+<p>この検討の結果から、 <a href="#layered_arch_01">図 10</a> のような階層化アーキテクチャが見いだせる。</p>
 </div>
 <div id="layered_arch_01" class="imageblock">
 <div class="content">
 <img src="images/layered_arch.png" alt="layered arch" width="75%">
 </div>
-<div class="title">図 8. モデル図を作成した結果発見した階層化アーキテクチャ</div>
+<div class="title">図 10. モデル図を作成した結果発見した階層化アーキテクチャ</div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_演習タイマーを使う"><a class="anchor" href="#_演習タイマーを使う"></a>【演習】タイマーを使う</h3>
+<h3 id="_タイマーとホーン"><a class="anchor" href="#_タイマーとホーン"></a>タイマーとホーン</h3>
 <div class="paragraph">
 <p>「2秒経過した」という動作は、他に何もすることがなければ <code>sample01</code> のときのように <code>tslp_tsk</code> を使えばできる。
 しかし、これはプログラムをスリープさせているので、他の処理も動作しない。
-他の処理を実行しながら時間の経過を待つには、別の方法が必要とする。</p>
+他の処理を実行しながら時間の経過を待つには、別の方法が必要となる。</p>
 </div>
 <div class="paragraph">
 <p>タイマーは、一定の時間経過を調べるためのしくみとしてよく使われる。
@@ -747,10 +995,57 @@ void porter_transport(void) {
 <div class="content">
 <img src="images/timer.png" alt="timer" width="25%">
 </div>
-<div class="title">図 9. タイマークラス</div>
+<div class="title">図 11. タイマークラス</div>
 </div>
 <div class="paragraph">
-<p>タイマークラスの動作について、説明を聞く。</p>
+<p>タイマークラスの動作について、説明を聞いて実行する。</p>
+</div>
+<div class="paragraph">
+<p>タイマーの他に、あらかじめ決まった音（到着音、確認音、警告音）を鳴らすホーンクラスも用意している。</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/horn.png" alt="horn" width="25%">
+</div>
+<div class="title">図 12. ホーンクラス</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+簡便なクラスなので、それぞれの音を再生中は他の動作を変えられないことに注意する。
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_演習タイマーとホーンを使う"><a class="anchor" href="#_演習タイマーとホーンを使う"></a>【演習】タイマーとホーンを使う</h3>
+<div class="paragraph">
+<p><a href="#timer_horn_usage">図 13</a> にタイマーとホーンを使うステートマシン図の表記とコードの対応づけの例を示す。</p>
+</div>
+<div id="timer_horn_usage" class="imageblock">
+<div class="content">
+<img src="images/timer_horn_usage02.png" alt="timer horn usage02" width="100%">
+</div>
+<div class="title">図 13. timerとhornの利用例</div>
+</div>
+<div class="sect3">
+<h4 id="_配達先で到着を鳴らす"><a class="anchor" href="#_配達先で到着を鳴らす"></a>配達先で到着を鳴らす</h4>
+<div class="paragraph">
+<p>配達先や車庫に到着したら、到着音を鳴らすように、sample04を改造しなさい。</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_荷物の積載待ちで確認音を鳴らす"><a class="anchor" href="#_荷物の積載待ちで確認音を鳴らす"></a>荷物の積載待ちで確認音を鳴らす</h4>
+<div class="paragraph">
+<p>荷物を受け取らずに10秒経過したら、確認音を鳴らすように、sample04を改造しなさい。
+その後も、10秒経過するたびに鳴るようにしなさい。
+おおむね、<a href="#timer_horn_usage">図 13</a> を真似れば実現できるはず。</p>
+</div>
 </div>
 </div>
 <div class="sect2">
@@ -791,7 +1086,7 @@ void porter_transport(void) {
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2023-10-10 13:22:41 +0900
+Last updated 2024-10-02 09:20:12 +0900
 </div>
 </div>
 </body>

@@ -36,8 +36,69 @@
 
 NOTE: この演習は、グループで相談しつつ、各自が実施します。
 
-== sample01のモデル図を作る
+== 演習場所を調整する
 
+
+=== EV3RTのワークスペースにcloneする
+
+このAssignmentでは演習でEV3RTのプログラムをビルド（make）します。
+そのため、サンプルコードをEV3RTの開発環境に配置しておかないと不自由です。
+そうなるように、cloneする場所を EV3RT のワークスペースとなる場所に調整します（そうでない場所にcloneしてしまった場合は、調整場所に移動しましょう）。
+
+具体的には、 `sdk/workspace` の「並び」に配置します。
+次のように、 `sdk` ディレクトリに移動してからcloneを実行します。
+
+[[assignment_location01]]
+.`sample_code_and_model/` をワークスペースの位置に配置する
+[source,shell]
+----
+$ cd {EV3RTの置き場所}/hrp3/sdk # <1>
+$ git clone {受理したAssigmentのURL} # <2>
+----
+<1> EV3RTの `sdk` ディレクトに移動した。演習の指示通りなら「EV3RTの置き場所」は `/c/ev3rt` だろう。
+<2> 例えばアカウント名が `abcd` なら、 `https://github.com/cit-prjex/sample-code-and-model-abcd.git` のようになるだろう。
+
+`workspace` と同じ階層（ `sdk` の下）に配置されたことを確認します。
+例えば、 cloneしたリポジトリが `sample-code-and-model-abcd` ならば、 <<assignment_location02>> のよな配置になります。
+
+[[assignment_location02]]
+[source,shell]
+.cloneしたリポジトリの配置を確認する
+----
+$ pwd # <1>
+{EV3RTの置き場所}/hrp3/sdk
+$ tree -L1
+{EV3RTの置き場所}/hrp3/sdk
+├── （その他のいろいろ）
+├── sample-code-and-model-abcd # <2>
+└── workspace
+----
+<1> カレントディレクトリ（現在のディレクトリ）を `sdk` に移動したことを確認。
+<2> cloneしたリポジトリ（のディレクトリ）があることを確認する。
+
+=== Makefileをworkspaceからコピーする
+
+
+`workspace` の中にあるMakefileがないと、EV3RTのワークスペースとして機能しません。
+そこで、`workspace` の中の `Makefile` をcloneしたリポジトリにコピーします。
+ターミナルから実行してもよいですし、Windows のExploreを使ってコピーしてもかまいません。
+
+[source,shell]
+.`Makefile` をコピーできたか確認する
+----
+$ pwd
+{EV3RTの置き場所}/hrp3/sdk/クローンしたディレクトリ # <1>
+$ ls -1 # <2>
+README.adoc
+いろいろ）
+Makefile # <3>
+----
+<1> カレントディレクトリ（現在のディレクトリ）が、cloneしたディレクトリに移動してあることを確認。
+<2> `ls` コマンドを `-1` （エルではなく `1` ）で実行した。
+<3> Makefileがコピーできていいることを確認した。
+
+
+== sample01のモデル図を作る
 
 === 【演習】sample01を動かす
 
