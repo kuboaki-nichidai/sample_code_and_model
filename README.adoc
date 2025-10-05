@@ -199,7 +199,7 @@ git push
 [NOTE]
 --
 このソース（ `README.adoc` ）は、GitHubのリポジトリのフロントページに表示される。
-自分でプレビューしたい場合は、 `README.adoc` をAsciidoctor用プラグインを入れたブラウザで表示するか、Asciidoctorコマンドで変換したHTMLファイルをみて確認してください。
+ローカル（自分のPC）でもプレビューしたい場合は、 `README.adoc` をVisual Studio Codeのプレビューで確認してください。
 --
 
 == sample04のモデル図を作る
@@ -216,7 +216,7 @@ git push
 ----
 $ make app=codes/sample04 # <1>
 ----
-<1> `sample04` があるのは `codes` の中なので。
+<1> `sample04` があるのは `codes` の中なので、そこを指定してビルドした。
 
 `sample04` は、次のように動作する。
 
@@ -228,7 +228,7 @@ $ make app=codes/sample04 # <1>
 . バンパーが押されると、自動搬送ロボットは、車庫についたとみなして停止する。
 
 .参考動画（sample04に例外処理を追加したもの）
-video::-vaPDf_4p_k[youtube]
+https://youtu.be/MUhdS54vkU0[sample04.mp4(youtube)]
 
 うまく動かないと思う場合は、次の節を参考に、センサーの閾値などを調整しなさい。
 
