@@ -234,6 +234,8 @@ https://youtu.be/MUhdS54vkU0[sample04.mp4(youtube)]
 
 ==== sample04のソースコードをテキストエディタで参照しなさい
 
+link:codes/sample04/app.c[]
+
 [[sample04_app_c_1]]
 .`sample04/app.c`(1)（冒頭部分を抜粋）
 [source,ruby,linenums]
