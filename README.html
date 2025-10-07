@@ -42,7 +42,7 @@
 </div>
 <div class="paragraph">
 <p>具体的には、 <code>sdk/workspace</code> の「並び」に配置します。
-<a href="#assignment_location01"><code>sample_code_and_model/</code> をワークスペースの位置に配置する</a> のように、ターミナルでcloneするときに、 <code>sdk</code> ディレクトリでcloneを実行します。</p>
+次のように、 <code>sdk</code> ディレクトリに移動してからcloneを実行します。</p>
 </div>
 <div id="assignment_location01" class="listingblock">
 <div class="title"><code>sample_code_and_model/</code> をワークスペースの位置に配置する</div>
@@ -55,7 +55,7 @@ $ git clone {受理したAssigmentのURL} <i class="conum" data-value="2"></i><b
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>EV3RTの <code>sdk</code> ディレクトに移動した。演習の指示通りなら <code>/c/ev3rt</code> だろう。</td>
+<td>EV3RTの <code>sdk</code> ディレクトに移動した。演習の指示通りなら「EV3RTの置き場所」は <code>/c/ev3rt</code> だろう。</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
@@ -138,6 +138,20 @@ Makefile <i class="conum" data-value="3"></i><b>(3)</b></code></pre>
 <h4 id="_sample01をビルドして実行しなさい"><a class="anchor" href="#_sample01をビルドして実行しなさい"></a>sample01をビルドして実行しなさい</h4>
 <div class="paragraph">
 <p><code>sample01</code> をビルドして、実行しなさい。</p>
+</div>
+<div id="make_sample01" class="listingblock">
+<div class="title"><code>sample01</code> をビルドする</div>
+<div class="content">
+<pre class="highlight"><code class="language-shell" data-lang="shell">$ make app=codes/sample01 <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td><code>sample01</code> があるのは <code>codes</code> の中なので。</td>
+</tr>
+</table>
 </div>
 <div id="sample01_app_c" class="listingblock">
 <div class="title"><code>sample01/app.c</code></div>
@@ -365,7 +379,7 @@ void main_task(intptr_t unused) { <i class="conum" data-value="1"></i><b>(1)</b>
 <td class="content">
 <div class="paragraph">
 <p>このソース（ <code>README.adoc</code> ）は、GitHubのリポジトリのフロントページに表示される。
-自分でプレビューしたい場合は、 <code>README.adoc</code> をAsciidoctor用プラグインを入れたブラウザで表示するか、Asciidoctorコマンドで変換したHTMLファイルをみて確認してください。</p>
+ローカル（自分のPC）でもプレビューしたい場合は、 <code>README.adoc</code> をVisual Studio Codeのプレビューで確認してください。</p>
 </div>
 </td>
 </tr>
@@ -384,6 +398,23 @@ void main_task(intptr_t unused) { <i class="conum" data-value="1"></i><b>(1)</b>
 <h4 id="_sample04をビルドして実行しなさい"><a class="anchor" href="#_sample04をビルドして実行しなさい"></a>sample04をビルドして実行しなさい</h4>
 <div class="paragraph">
 <p><code>sample04</code> をビルドして、実行しなさい。</p>
+</div>
+<div id="make_sample04" class="listingblock">
+<div class="title"><code>sample04</code> をビルドする</div>
+<div class="content">
+<pre class="highlight"><code class="language-shell" data-lang="shell">$ make app=codes/sample04 <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td><code>sample04</code> があるのは <code>codes</code> の中なので、そこを指定してビルドした。</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p><code>sample04</code> は、次のように動作する。</p>
 </div>
 <div class="olist arabic">
 <div class="title">自動搬送ロボットが荷物を運搬する</div>
@@ -405,15 +436,20 @@ void main_task(intptr_t unused) { <i class="conum" data-value="1"></i><b>(1)</b>
 </li>
 </ol>
 </div>
-<div class="videoblock">
+<div class="paragraph">
 <div class="title">参考動画（sample04に例外処理を追加したもの）</div>
-<div class="content">
-<iframe src="https://www.youtube.com/embed/-vaPDf_4p_k?rel=0" frameborder="0" allowfullscreen></iframe>
+<p><a href="https://youtu.be/MUhdS54vkU0">sample04.mp4(youtube)</a></p>
 </div>
+<div class="paragraph">
+<p>うまく動かないと思う場合は、次の節を参考に、センサーの閾値などを調整しなさい。</p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="_sample04のソースコードをテキストエディタで参照しなさい"><a class="anchor" href="#_sample04のソースコードをテキストエディタで参照しなさい"></a>sample04のソースコードをテキストエディタで参照しなさい</h4>
+<div class="paragraph">
+<div class="title"><code>sample04/app.c</code> （コードファイルへの参照リンク）</div>
+<p><a href="codes/sample04/app.c" class="bare">codes/sample04/app.c</a></p>
+</div>
 <div id="sample04_app_c_1" class="listingblock">
 <div class="title"><code>sample04/app.c</code>(1)（冒頭部分を抜粋）</div>
 <div class="content">
@@ -1086,7 +1122,7 @@ void porter_transport(void) {
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-10-02 09:20:12 +0900
+Last updated 2025-10-05 11:31:57 +0900
 </div>
 </div>
 </body>
